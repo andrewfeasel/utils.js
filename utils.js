@@ -1,3 +1,4 @@
+//req should be a Request object
 async function * RequestGenerator(url, type){
   const req = await fetch(url);
   if(!req.ok){ throw new Error(req.status); }
