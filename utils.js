@@ -1,17 +1,17 @@
-//req should be a Request object
-async function * RequestGenerator(url, type){
-  const req = await fetch(url);
-  if(!req.ok){ throw new Error(req.status); }
-  switch(type) {
-    case "text": yield await req.text(); break;
-    case "json": yield await req.json(); break;
-    case "blob": yield await req.blob(); break;
-    case "bytes": yield await req.bytes(); break;
-    case "formData": yield await req.formData(); break;
-    case "arrayBuffer": yield await req.arrayBuffer(); break;
-    default: yield await req.json(); break;
+"use strict";
+class Requests {
+  static async * RequestGenerator(req, type) {
+    const res = await fetch(req);
+    if(!res.ok){ throw new Error(res.status); }
+    switch(type) {
+      case "text": yield await res.text(); break;
+      case "json": yield await res.json(); break;
+      case "blob": yield await res.blob(); break;
+      case "bytes": yield await res.bytes(); break;
+      case "formData": yield await res.formData(); break;
+      case "arrayBuffer": yield await res.arrayBuffer(); break;
+      default: yield await res.json(); break;
+    }
   }
 }
-export {
-  RequestGenerator
-}
+export default Requests;
