@@ -1,5 +1,10 @@
 "use strict";
 const $ = x => document.querySelector(x);
+const $$ = x => Array.from(document.querySelectorAll(x));
+const ParseJSON = json => {
+  try{ return {valid: false, json: JSON.parse(json)} }
+  catch { return {valid: false, json: null} }
+}
 async function * RequestGenerator(req, type) {
   const res = await fetch(req);
   if(!res.ok){ throw new Error(res.status); }
@@ -14,6 +19,6 @@ async function * RequestGenerator(req, type) {
   }
 }
 export {
-  $,
-  RequestGenerator
+  $, $$,
+  ParseJSON, RequestGenerator
 };
