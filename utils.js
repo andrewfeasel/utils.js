@@ -16,6 +16,5 @@ async function BatchRequest(arr) {
   }));
 }
 export {
-  $, $$,
-  RequestGenerator
+  $, $$, RequestGenerator, BatchRequest
 };
